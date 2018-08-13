@@ -1,22 +1,19 @@
 import {Injectable} from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import {Observable} from 'rxjs/Observable';
-
+import {forkJoin} from 'rxjs';  // Angular 6/RxJs 6
+// import {Observable} from 'rxjs/Observable';  // Angular 5/RxJs 5.5
 const httpOptions = {
-    headers: new HttpHeaders({'Content-Type': 'application/json'})
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
 
 @Injectable()
 export class DemoService {
 
-    constructor(private http:HttpClient) {
+    constructor(private http: HttpClient) {
     }
 
-    // NOTE: all API calls in this file use simple endpoints served by
-    // an Express app in the file backend.js in the repo root. See that file
-    // for all back-end code.
-
-    // Uses http.get() to load data from a single API endpoint
+    // NOTE: all API calls in this file use simple endpoints served by an Express app in the file app.js in the repo root. See that file
+    // for all back-end code. Uses http.get() to load data from a single API endpoint
     getFoods() {
         return this.http.get('/api/food');
     }
@@ -24,7 +21,7 @@ export class DemoService {
     // Uses Observable.forkJoin() to run multiple concurrent http.get() requests.
     // The entire operation will result in an error state if any single request fails.
     getBooksAndMovies() {
-        return Observable.forkJoin(
+        return forkJoin(  // Angular 6/RxJs 6
             this.http.get('/api/books'),
             this.http.get('/api/movies')
         );
@@ -46,4 +43,5 @@ export class DemoService {
     deleteFood(food) {
         return this.http.delete('/api/food/' + food.id);
     }
+
 }
