@@ -1,4 +1,4 @@
-# Angular 5 HTTP Client Demo App
+# BEC Angular training HTTP Client Demo App
 
 This is a demo application showing how to use the HttpClient service and Observables in Angular 6.
 

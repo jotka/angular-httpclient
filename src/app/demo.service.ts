@@ -46,5 +46,4 @@ export class DemoService {
     deleteFood(food) {
         return this.http.delete('/api/food/' + food.id);
     }
-
 }

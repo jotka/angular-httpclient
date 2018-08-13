@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng build && node backend.js",
+    "start": "ng y&& node backend.js",
     "build": "ng build --prod"
   },
   "private": true,
@@ -25,6 +25,7 @@
     "core-js": "^2.5.4",
     "hammerjs": "^2.0.8",
     "rxjs": "^6.1.0",
+    "rxjs-compat": "^6.2.2",
     "zone.js": "^0.8.26"
   },
   "devDependencies": {
