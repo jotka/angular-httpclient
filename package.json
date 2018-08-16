@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng y&& node backend.js",
+    "start": "ng serve && node backend.js",
     "build": "ng build --prod"
   },
   "private": true,

@@ -4,7 +4,21 @@ const path = require('path');
 
 const app = express();
 app.use(express.static(__dirname));
-
+app.use(function (req, res, next) {
+    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+    res.setHeader('Access-Control-Allow-Credentials', true);
+    //intercepts OPTIONS method
+    if ('OPTIONS' === req.method) {
+        //respond with 200
+        res.sendStatus(200);
+    }
+    else {
+        //move on
+        next();
+    }
+});
 app.use(bodyParser.json()); // support json encoded bodies
 // app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
@@ -50,6 +64,14 @@ app.get('/api/food', function (req, res) {
     // This is a very simple API endpoint. It returns the current value of the "foods" array.
     res.send(foods);
 
+});
+
+// GET endpoint for specific food
+app.get('/api/food/:id', function (req, res) {
+    console.log("GET food: " + req.params.id);
+    let id = req.params.id;
+    let f = foods.find(x => x.id == id);
+    res.send(f);
 });
 
 // POST endpoint for creating a new food
@@ -130,6 +152,6 @@ app.use(function(req, res, next) {
 
 // HTTP listener
 app.listen(3000, function () {
-    console.log('Example listening on port 3000!');
+    console.log('Backend listening on port 3000!');
 });
 module.exports = app;

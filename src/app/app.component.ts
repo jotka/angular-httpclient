@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {DemoService} from './demo.service';
-import {Observable} from 'rxjs/Rx';
+import {Observable} from "rxjs/index";
+import {throwError} from 'rxjs';  // Updated for Angular 6/RxJS 6
 
 @Component({
     selector: 'app-root',
@@ -54,7 +55,7 @@ export class AppComponent {
             // the third argument is a function which runs on completion
             () => console.log('done loading foods')
         );
-    }
+    };
 
     getBooksAndMovies() {
         this._demoService.getBooksAndMovies().subscribe(
@@ -65,7 +66,7 @@ export class AppComponent {
             // No error or completion callbacks here. They are optional, but
             // you will get console errors if the Observable is in an error state.
         );
-    }
+    };
 
     createFood(name) {
         let food = {name: name};
@@ -77,10 +78,10 @@ export class AppComponent {
             },
             error => {
                 console.error("Error saving food!");
-                return Observable.throw(error);
+                return throwError(error);
             }
         );
-    }
+    };
 
     updateFood(food) {
         this._demoService.updateFood(food).subscribe(
@@ -91,10 +92,10 @@ export class AppComponent {
             },
             error => {
                 console.error("Error saving food!");
-                return Observable.throw(error);
+                return throwError(error);
             }
         );
-    }
+    };
 
     deleteFood(food) {
         if (confirm("Are you sure you want to delete " + food.name + "?")) {
@@ -105,10 +106,10 @@ export class AppComponent {
                     return true;
                 },
                 error => {
-                    console.error("Error deleting food!");
-                    return Observable.throw(error);
+                    console.error("Error deleting food!")
+                    return throwError(error);
                 }
             );
         }
-    }
+    };
 }

@@ -10,12 +10,14 @@ This is a demo application showing how to use the HttpClient service and Observa
 
 # Running the app
 
-To run this application, you need NodeJS and NPM installed on your system. Then, run the following commands from your command prompt:
+To run this application, you need NodeJS and NPM installed on your system.
+Then, run the following commands from separate command prompts:
 
 ```
-npm install
-npm start
+node backend.js
+ng serve
 ```
 
-This will transpile the TypeScript files, bundle everything using Webpack, and start the Node server.
-The app will be available at [http://localhost:3000/](http://localhost:3000/)
+This will transpile the TypeScript files, and start the Node server.
+The app will be available at [http://localhost:4200/](http://localhost:4200/)
+The REST backend will be available at [http://localhost:3000/](http://localhost:3000/)
